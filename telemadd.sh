@@ -1,5 +1,55 @@
 #!/bin/bash
 
+menu_show_type() {
+  menu=0
+  while [ "$menu" -eq 0 ] ; do
+    #makes menu
+    read input
+  	case $input in
+      1) type="-A" && menu=1;;
+  		2) type="-C" && menu=1;;
+  		3) type="-B" && menu=1;;
+      3) type="-E" && menu=1;;
+  		*) echo -e "${RED}Invalid Option Please Try Again...${STD}" && sleep 2
+  	esac
+  done
+}
+
+menu_show_command() {
+  menu=0
+  while [ "$menu" -eq 0 ] ; do
+    #makes menu
+    read input
+  	case $input in
+      1) echo "Type your custom command"
+        read command
+        printf "$command\nIs this right? [y/n]"
+        menu=1;;
+  		2) command="/dev/ttyAMA0" && menu=1;;
+  		3) type="-B" && menu=1;;
+      3) type="-E" && menu=1;;
+  		*) echo -e "${RED}Invalid Option Please Try Again...${STD}" && sleep 2
+  	esac
+  done
+}
+
+menu_show() {
+  menu=0
+  while [ "$menu" -eq 0 ] ; do
+    #makes menu
+    read input
+  	case $input in
+      1) type="-A" && menu=1;;
+  		2) type="-C" && menu=1;;
+  		3) type="-B" && menu=1;;
+      3) type="-E" && menu=1;;
+  		*) echo -e "${RED}Invalid Option Please Try Again...${STD}" && sleep 2
+  	esac
+  done
+}
+
+
+
 menu_show(){
   menu=0
   while [ "$menu" -eq 0 ] ; do
@@ -21,7 +71,7 @@ menu_show(){
         read confirm
       	case $confirm in
       		[yY][eE][sS]|[yY])
-            Telem+="$input"
+            Telem+="$input" ;;
       		[nN][oO]|[nN])
       			clear
             echo "Try typing the command again" ;;
@@ -38,3 +88,19 @@ Telem[1]="option1"
 Telem[2]="option2"
 printf "Welcome to navtools\ntype 'help' for a list of commands or 'ctrl+c' to exit at any time\n"
 menu_show
+
+
+
+#prints options
+#printf "Select Telem Type\n1) -A  Console Switch (usually Wi-Fi link)\n2) -C  Telemetry Switch\n3) -B Specify Extra GPS\n4) -E Specify Extra GPS\n\n"
+#menu_show_type
+#echo "option $type selected"
+
+#echo "menutext"
+#menu_show_command
+
+
+
+
+
+#printf "${Telem[@]}"
